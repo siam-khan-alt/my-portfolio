@@ -6,7 +6,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import emailjs from 'emailjs-com';
 import Swal from 'sweetalert2';
-import { FaEnvelope, FaMapMarkerAlt, FaPaperPlane } from 'react-icons/fa';
+import { FaEnvelope, FaMapMarkerAlt, FaPaperPlane, FaPhone } from 'react-icons/fa';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -89,7 +89,7 @@ const EMAILJS_USER_ID = process.env.NEXT_PUBLIC_EMAILJS_USER_ID;
     <section
       id="contact"
       ref={sectionRef}
-      className="py-20 px-4 relative overflow-hidden"
+      className="py-10 md:py-14 lg:py-20 px-4 relative overflow-hidden"
     >
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#6366F1]/5 to-transparent"></div>
 
@@ -118,6 +118,22 @@ const EMAILJS_USER_ID = process.env.NEXT_PUBLIC_EMAILJS_USER_ID;
             transition={{ duration: 0.8 }}
             className="space-y-6"
           >
+            <div className="bg-[#0f172a]/50 backdrop-blur-sm border border-gray-800 rounded-2xl p-6 shadow-xl">
+              <div className="flex items-start gap-4">
+                <div className="p-3 bg-[#6366F1]/10 rounded-lg">
+                  <FaPhone size={24} className="text-[#6366F1]" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-white mb-2">Phone Number</h3>
+                  <p
+                    
+                    className="text-gray-400 hover:text-[#6366F1] transition-colors"
+                  >
+                    01881361160
+                  </p>
+                </div>
+              </div>
+            </div>
             <div className="bg-[#0f172a]/50 backdrop-blur-sm border border-gray-800 rounded-2xl p-6 shadow-xl">
               <div className="flex items-start gap-4">
                 <div className="p-3 bg-[#6366F1]/10 rounded-lg">
@@ -230,8 +246,8 @@ const EMAILJS_USER_ID = process.env.NEXT_PUBLIC_EMAILJS_USER_ID;
                   value={formData.message}
                   onChange={handleChange}
                   required
-                  rows="5"
-                  className="w-full px-4 py-3 bg-[#020617] border border-gray-700 rounded-lg text-white focus:outline-none focus:border-[#6366F1] transition-colors resize-none"
+                  className="w-full h-28
+                      md:h-[222px] px-4 py-3 bg-[#020617] border border-gray-700 rounded-lg text-white focus:outline-none focus:border-[#6366F1] transition-colors resize-none"
                   placeholder="Tell me about your project..."
                 ></textarea>
               </div>

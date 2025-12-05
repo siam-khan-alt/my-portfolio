@@ -1,18 +1,18 @@
-import Navbar from '@/components/Navbar';
 import HeroSection from '@/components/HeroSection';
 import AboutSection from '@/components/AboutSection';
 import ProjectsSection from '@/components/ProjectsSection';
 import ContactSection from '@/components/ContactSection';
-import Footer from '@/components/Footer';
+import EducationSection from '@/components/EducationSection';
 export default function Home() {
   return (
-    <main className="min-h-screen bg-[#020617] container mx-auto">
-      <Navbar />
+    <main className="">
+      
       <HeroSection />
       <AboutSection />
+      <EducationSection/>
       <ProjectsSection />
       <ContactSection />
-      <Footer />
+     
     </main>
   );
 }

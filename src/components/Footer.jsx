@@ -24,7 +24,7 @@ export default function Footer() {
     },
     {
       icon: <FaFacebook size={20} />,
-      href: 'https://facebook.com',
+      href: 'https://www.facebook.com/profile.php?id=100078237812772',
       label: 'Facebook',
     },
   ];

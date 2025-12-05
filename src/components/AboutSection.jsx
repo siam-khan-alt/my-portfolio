@@ -1,60 +1,60 @@
-'use client';
+"use client";
 
-import { useRef } from 'react';
-import { motion } from 'framer-motion';
-import { FaReact, FaNodeJs } from 'react-icons/fa';
+import { useRef } from "react";
+import { motion } from "framer-motion";
+import { FaReact, FaNodeJs } from "react-icons/fa";
 import {
   SiNextdotjs,
   SiExpress,
   SiMongodb,
   SiTailwindcss,
-} from 'react-icons/si';
+} from "react-icons/si";
 
 export default function AboutSection() {
   const sectionRef = useRef(null);
 
   const skills = [
     {
-      name: 'React.js',
+      name: "React.js",
       icon: <FaReact size={48} />,
-      color: '#61DAFB',
-      level: 70,
-      description: 'Expert',
+      color: "#61DAFB",
+      level: 85,
+      description: "Advanced",
     },
     {
-      name: 'Next.js',
+      name: "Next.js",
       icon: <SiNextdotjs size={48} />,
-      color: '#ffffff',
-      level: 30,
-      description: 'Proficient',
+      color: "#ffffff",
+      level: 40,
+      description: "Learning",
     },
     {
-      name: 'Node.js',
+      name: "Node.js",
       icon: <FaNodeJs size={48} />,
-      color: '#339933',
-      level: 65,
-      description: 'Proficient',
-    },
-    {
-      name: 'Express.js',
-      icon: <SiExpress size={48} />,
-      color: '#ffffff',
-      level: 50,
-      description: 'Proficient',
-    },
-    {
-      name: 'MongoDB',
-      icon: <SiMongodb size={48} />,
-      color: '#47A248',
-      level: 50,
-      description: 'Expert',
-    },
-    {
-      name: 'Tailwind CSS',
-      icon: <SiTailwindcss size={48} />,
-      color: '#06B6D4',
+      color: "#339933",
       level: 75,
-      description: 'Expert',
+      description: "Proficient",
+    },
+    {
+      name: "Express.js",
+      icon: <SiExpress size={48} />,
+      color: "#ffffff",
+      level: 70,
+      description: "Proficient",
+    },
+    {
+      name: "MongoDB",
+      icon: <SiMongodb size={48} />,
+      color: "#47A248",
+      level: 50,
+      description: "Expert",
+    },
+    {
+      name: "Tailwind CSS",
+      icon: <SiTailwindcss size={48} />,
+      color: "#06B6D4",
+      level: 90,
+      description: "Expert",
     },
   ];
 
@@ -62,7 +62,7 @@ export default function AboutSection() {
     <section
       id="about"
       ref={sectionRef}
-      className="py-20 px-4 relative overflow-hidden"
+      className="py-10 md:py-14 lg:py-20 px-4 relative overflow-hidden"
     >
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#6366F1]/5 to-transparent"></div>
 
@@ -75,7 +75,7 @@ export default function AboutSection() {
           transition={{ duration: 0.8 }}
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            <span className="text-white">About</span>{' '}
+            <span className="text-white">About</span>{" "}
             <span className="text-[#6366F1]">Me</span>
           </h2>
           <div className="w-60 md:w-72 lg:w-80 h-1 bg-gradient-to-r from-[#6366F1] to-[#EC4899] mx-auto rounded-full"></div>
@@ -89,17 +89,79 @@ export default function AboutSection() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="bg-[#0f172a]/50 backdrop-blur-sm border border-gray-800 rounded-2xl p-6 lg:p-8 shadow-2xl shadow-[#6366F1]/10"
           >
-            <p className="text-gray-300 text-lg leading-relaxed text-center max-w-4xl mx-auto">
-              I am a passionate MERN Stack Developer with a strong focus on
-              React.js. I love building modern, scalable web applications that
-              provide seamless user experiences. My expertise includes creating
-              dynamic frontends with React and Next.js, developing robust
-              backends with Node.js and Express, and managing databases with
-              MongoDB. I am constantly learning and exploring new technologies
-              to enhance my skills.
-            </p>
+            <article className="text-gray-300 text-base leading-relaxed space-y-8">
+              {/* Section 1: The Programming Journey */}
+              <div>
+                <h3 className="text-2xl font-bold mb-3 text-[#6366F1] border-b border-gray-700 pb-1">
+                  🚀 The Programming Journey
+                </h3>
+                <p>
+                  My initial spark for programming came from a restless drive to
+                  find a pursuit that would continuously challenge my mind,
+                  sharpen my problem-solving skills, and offer a path to
+                  creation and professional growth. My journey began with an
+                  early interest in technology, leading me to complete a
+                  **6-month Office Applications Course** where I earned an A+
+                  grade. My professional development journey truly took off with
+                  **Programming Hero**, where I am currently focused on
+                  mastering the **MERN stack**, eager to build modern, scalable
+                  web applications.
+                </p>
+              </div>
+
+              {/* Section 2: The Work I Enjoy and My Personality */}
+              <div>
+                <h3 className="text-2xl font-bold mb-3 text-[#6366F1] border-b border-gray-700 pb-1">
+                  🧠 Work Ethic and Personality
+                </h3>
+                <p>
+                  I find the most satisfaction in work that seamlessly blends
+                  logic and exceptional user experience. My core passion lies in
+                  **identifying complex problems and crafting elegant,
+                  functional solutions**. As a person, I am characterized by a
+                  **calm and composed demeanor**. I make every effort to remain
+                  balanced and avoid making rash decisions, successfully
+                  managing to stay calm in challenging situations nearly 95% of
+                  the time. This composed nature directly translates to my code:
+                  it allows me to stay focused and detail-oriented, ensuring
+                  clean and maintainable solutions.
+                </p>
+              </div>
+
+              {/* Section 3: Beyond the Code (Hobbies and Balance) */}
+              <div>
+                <h3 className="text-2xl font-bold mb-3 text-[#6366F1] border-b border-gray-700 pb-1">
+                  🧘‍♂️ Beyond the Code
+                </h3>
+                <p>
+                  While coding is my professional focus, I believe in
+                  maintaining a strong life balance. Away from the screen, I
+                  truly enjoy **long-distance walking**, especially in natural
+                  settings, as it clears my mind and sharpens my perspective.
+                  Spending quality time with loved ones and exploring new places
+                  rejuvenates my creativity. What started as a technical
+                  aspiration, programming itself has evolved into a dedicated
+                  **passion and hobby**. As a practicing Muslim, I strive to
+                  bring integrity, dedication, and balance into my daily life
+                  and professional commitments.
+                </p>
+              </div>
+            </article>
           </motion.div>
         </div>
+        <motion.div
+          className="about-title text-center mb-12"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{ duration: 0.8 }}
+        >
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+            <span className="text-white">My</span>{" "}
+            <span className="text-[#6366F1]">Skills</span>
+          </h2>
+          <div className="w-60 md:w-72 lg:w-80 h-1 bg-gradient-to-r from-[#6366F1] to-[#EC4899] mx-auto rounded-full"></div>
+        </motion.div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {skills.map((skill, index) => (

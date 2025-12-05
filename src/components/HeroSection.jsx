@@ -48,7 +48,7 @@ export default function HeroSection() {
     },
     {
       icon: <FaFacebook size={24} />,
-      href: 'https://facebook.com',
+      href: 'https://www.facebook.com/profile.php?id=100078237812772',
       color: '#6366F1',
     },
   ];

@@ -32,7 +32,7 @@ export default function ProjectsSection() {
     <section
       id="projects"
       ref={sectionRef}
-      className=" px-4 relative overflow-hidden"
+      className=" px-4 pt-10 md:pt-14 lg:pt-20 relative overflow-hidden"
     >
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#EC4899]/5 to-transparent"></div>
 
