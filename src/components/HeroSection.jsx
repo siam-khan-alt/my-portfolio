@@ -12,7 +12,7 @@ export default function HeroSection() {
   ];
 
   return (
-    <section 
+    <section
       id="home" 
       style={{
         minHeight: '100vh',
@@ -76,7 +76,7 @@ export default function HeroSection() {
               }}
             >
               <img
-                src="https://i.ibb.co.com/Ng66dkCB/219357395.jpg"
+                src="https://i.ibb.co.com/pBvs5mX5/1000009644.png"
                 alt="MD SIAM KHAN"
                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}
               />

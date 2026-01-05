@@ -108,7 +108,7 @@ export default function EducationSection() {
         background: 'var(--bg-primary)',
       }}
     >
-      <div className="max-w-7xl mx-auto">
+      <div className="container mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -129,7 +129,7 @@ export default function EducationSection() {
 
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
           gap: '2rem',
         }}>
           {filteredEducation.map((item, index) => (

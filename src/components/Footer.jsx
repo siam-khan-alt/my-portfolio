@@ -46,8 +46,7 @@ export default function Footer() {
       position: 'relative',
       overflow: 'hidden',
     }}>
-      <div style={{
-        maxWidth: '1280px',
+      <div className='container' style={{
         margin: '0 auto',
         padding: '4rem 2rem',
         position: 'relative',

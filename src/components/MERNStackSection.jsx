@@ -41,7 +41,7 @@ export default function MERNStackSection() {
 
   return (
     <section id="skills" style={{ padding: '0rem 2rem 2rem 2rem', background: 'var(--bg-secondary)' }}>
-      <div className="max-w-7xl mx-auto">
+      <div className="container mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -59,7 +59,7 @@ export default function MERNStackSection() {
 
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
           gap: '2rem',
         }}>
           {stackItems.map((item, index) => (

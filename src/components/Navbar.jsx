@@ -28,12 +28,12 @@ export default function Navbar() {
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`sticky top-0 z-50 w-full transition-all duration-300 ${
         isScrolled ? 'glass-card' : ''
       }`}
-      style={{ padding: '1rem 2rem' }}
+      style={{ padding: '1rem 0' }}
     >
-      <div className="max-w-7xl mx-auto flex justify-between items-center">
+      <div className="container  flex justify-between items-center">
         <motion.div
           whileHover={{ scale: 1.05 }}
           className="text-2xl font-bold flex gap-2 justify-center items-center cursor-pointer"

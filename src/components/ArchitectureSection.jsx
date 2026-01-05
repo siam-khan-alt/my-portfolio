@@ -33,7 +33,7 @@ export default function ArchitectureSection() {
 
   return (
     <section style={{ padding: '2rem ' }}>
-      <div className="max-w-7xl mx-auto">
+      <div className="container mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -65,7 +65,7 @@ export default function ArchitectureSection() {
 
         <div style={{ 
           display: 'grid', 
-          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', 
+          gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', 
           gap: '2rem',
         }}>
           {architectureItems.map((item, index) => (

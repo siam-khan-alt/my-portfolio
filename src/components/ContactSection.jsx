@@ -75,7 +75,7 @@ export default function ContactSection() {
         background: 'var(--bg-secondary)',
       }}
     >
-      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="container mx-auto relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -105,7 +105,7 @@ export default function ContactSection() {
 
         <div style={{ 
           display: 'grid', 
-          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
           gap: '2.5rem',
         }}>
           <motion.div
