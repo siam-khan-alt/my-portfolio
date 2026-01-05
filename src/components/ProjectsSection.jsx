@@ -1,60 +1,57 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import ProjectCard from './ProjectCard';
 import { projectsData } from '@/data/projectsData';
 
-gsap.registerPlugin(ScrollTrigger);
-
 export default function ProjectsSection() {
-  const sectionRef = useRef(null);
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.from('.projects-title', {
-        scrollTrigger: {
-          trigger: '.projects-title',
-          start: 'top 80%',
-        },
-        opacity: 0,
-        y: 50,
-        duration: 1,
-      });
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
-
   return (
     <section
       id="projects"
-      ref={sectionRef}
-      className=" px-4 pt-10 md:pt-14 lg:pt-20 relative overflow-hidden"
+      style={{
+        padding: ' 2rem',
+        position: 'relative',
+        background: 'var(--bg-primary)',
+        overflow: 'visible',
+      }}
     >
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#EC4899]/5 to-transparent"></div>
-
-      <div className="max-w-6xl mx-auto relative z-10">
+      <div className="max-w-7xl mx-auto relative z-10">
         <motion.div
-          className="projects-title text-center mb-16"
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          initial={{ opacity: 0, y: 50 }}
-          transition={{ duration: 0.8 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          style={{ textAlign: 'center', marginBottom: '4rem' }}
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            <span className="text-white">My</span>{' '}
-            <span className="text-[#6366F1]">Projects</span>
+          <h2 style={{ 
+            fontSize: 'clamp(2.5rem, 6vw, 4rem)',
+            fontWeight: 900,
+            marginBottom: '1rem',
+          }}>
+            <span style={{ color: 'var(--text-primary)' }}>Featured</span>{' '}
+            <span className="gradient-text">Projects</span>
           </h2>
-          <div className="w-60 md:w-72 lg:w-80 h-1 bg-gradient-to-r from-[#6366F1] to-[#EC4899] mx-auto rounded-full"></div>
-          <p className="text-gray-400 mt-6 max-w-2xl mx-auto">
-            Here are some of my recent projects that showcase my skills in
-            building modern web applications with the MERN stack.
+          
+     
+
+          <p style={{ 
+            color: 'var(--text-secondary)', 
+            marginTop: '1.5rem',
+            fontSize: '1.125rem',
+            maxWidth: '800px',
+            margin: '1.5rem auto 0',
+            lineHeight: 1.6
+          }}>
+            Showcasing modern web applications built with the MERN stack,
+            featuring scalable architecture and exceptional user experiences.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
+          gap: '2.5rem',
+        }}>
           {projectsData.map((project, index) => (
             <ProjectCard key={project.id} project={project} index={index} />
           ))}

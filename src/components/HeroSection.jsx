@@ -1,146 +1,197 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { gsap } from 'gsap';
-import { FaGithub, FaLinkedin, FaEnvelope, FaFacebook } from 'react-icons/fa';
-import { HiDownload } from 'react-icons/hi';
+import { Github, Linkedin, Mail, Facebook, Download, ArrowRight, Sparkles } from 'lucide-react';
+
 export default function HeroSection() {
-  const heroRef = useRef(null);
-  const imageRef = useRef(null);
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.from('.hero-text', {
-        opacity: 0,
-        y: 50,
-        duration: 1,
-        stagger: 0.2,
-        ease: 'power3.out',
-      });
-
-      gsap.from(imageRef.current, {
-        opacity: 0,
-        scale: 0.8,
-        duration: 1.2,
-        ease: 'back.out(1.7)',
-      });
-    }, heroRef);
-
-    return () => ctx.revert();
-  }, []);
-
   const socialLinks = [
-    {
-      icon: <FaGithub size={24} />,
-      href: 'https://github.com/siam-khan-alt',
-      color: '#6366F1',
-    },
-    {
-      icon: <FaLinkedin size={24} />,
-      href: 'https://www.linkedin.com/in/siam-khan-sp99/',
-      color: '#6366F1',
-    },
-    {
-      icon: <FaEnvelope size={24} />,
-      href: 'mailto:nssiam99@gmail.com',
-      color: '#EC4899',
-    },
-    {
-      icon: <FaFacebook size={24} />,
-      href: 'https://www.facebook.com/profile.php?id=100078237812772',
-      color: '#6366F1',
-    },
+    { icon: Github, href: 'https://github.com/siam-khan-alt', color: '#6366f1' },
+    { icon: Linkedin, href: 'https://www.linkedin.com/in/siam-khan-sp99/', color: '#6366f1' },
+    { icon: Mail, href: 'mailto:nssiam99@gmail.com', color: '#ec4899' },
+    { icon: Facebook, href: 'https://www.facebook.com/profile.php?id=100078237812772', color: '#6366f1' },
   ];
 
   return (
-    <section
-      id="home"
-      ref={heroRef}
-      className="min-h-screen flex items-center justify-center px-4 pt-16 relative overflow-hidden"
+    <section 
+      id="home" 
+      style={{
+        minHeight: '100vh',
+        display: 'flex',
+        alignItems: 'center',
+        padding: '2rem',
+        paddingTop: '6rem',
+        position: 'relative',
+        background: 'var(--bg-primary)',
+        overflow: 'hidden'
+      }}
     >
-      <div className="absolute inset-0 bg-gradient-to-br from-[#6366F1]/5 via-transparent to-[#EC4899]/5"></div>
+      {/* Background Abstract Glows */}
+      <div className="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] bg-[#6366f1] opacity-20 blur-[120px] rounded-full" />
+      <div className="absolute bottom-[-10%] left-[-10%] w-[400px] h-[400px] bg-[#ec4899] opacity-10 blur-[100px] rounded-full" />
 
-      <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center pb-5  relative z-10">
-        <div className="text-center md:text-left space-y-6">
-          <motion.h2
-            className="hero-text text-[#EC4899] text-lg font-semibold"
-            whileHover={{ scale: 1.05 }}
-          >
-            Hello, I am
-          </motion.h2>
+      <div className="max-w-7xl mx-auto grid md:grid-cols-12 gap-12 items-center w-full relative z-10">
+        
+        {/* LEFT SIDE: Image and Socials (Unique Shape) */}
+        <motion.div 
+          className="md:col-span-5 relative flex items-center justify-center"
+          initial={{ opacity: 0, x: -100 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1 }}
+        >
+          {/* Vertical Socials Beside Image */}
+          <div className="absolute left-[-20px] md:left-[-40px] flex flex-col gap-4 z-20">
+            {socialLinks.map((social, index) => (
+              <motion.a
+                key={index}
+                href={social.href}
+                target="_blank"
+                whileHover={{ scale: 1.2, x: 10 }}
+                style={{
+                  padding: '0.6rem',
+                  background: 'rgba(255, 255, 255, 0.05)',
+                  backdropFilter: 'blur(10px)',
+                  border: '1px solid rgba(255, 255, 255, 0.1)',
+                  borderRadius: '10px',
+                  color: social.color,
+                }}
+              >
+                <social.icon size={20} />
+              </motion.a>
+            ))}
+          </div>
 
-          <h1 className="hero-text text-5xl md:text-6xl font-bold">
-            <span className="text-white">MD SIAM</span>
-            <br />
-            <span className="text-[#6366F1]">KHAN</span>
+          {/* Main Image Container (Irregular Shape) */}
+          <div style={{ position: 'relative', width: '100%', maxWidth: '400px' }}>
+            <motion.div
+              animate={{
+                borderRadius: ["40% 60% 70% 30% / 40% 50% 60% 40%", "60% 40% 30% 70% / 50% 60% 40% 60%", "40% 60% 70% 30% / 40% 50% 60% 40%"],
+              }}
+              transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+              style={{
+                width: '100%',
+                aspectRatio: '1/1.1',
+                overflow: 'hidden',
+                border: '6px solid rgba(99, 102, 241, 0.3)',
+                boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)',
+              }}
+            >
+              <img
+                src="https://i.ibb.co.com/Ng66dkCB/219357395.jpg"
+                alt="MD SIAM KHAN"
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              />
+            </motion.div>
+            
+            {/* Experience Badge Floating */}
+            <motion.div 
+              animate={{ y: [0, -15, 0] }}
+              transition={{ duration: 4, repeat: Infinity }}
+              style={{
+                position: 'absolute',
+                bottom: '10%',
+                right: '-5%',
+                padding: '1rem',
+                background: 'rgba(255, 255, 255, 0.05)',
+                backdropFilter: 'blur(15px)',
+                borderRadius: '16px',
+                border: '1px solid rgba(255, 255, 255, 0.1)',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.75rem'
+              }}
+            >
+              <div style={{ background: 'var(--accent-primary)', padding: '0.5rem', borderRadius: '10px' }}>
+                <Sparkles size={20} color="white" />
+              </div>
+              <div>
+                <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>MERN Stack</p>
+                <p style={{ fontWeight: 800, color: 'var(--text-primary)' }}>Developer</p>
+              </div>
+            </motion.div>
+          </div>
+        </motion.div>
+
+        {/* RIGHT SIDE: Text Content */}
+        <motion.div
+          className="md:col-span-7"
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--accent-primary)', marginBottom: '1.5rem' }}>
+            <span style={{ width: '40px', height: '2px', background: 'var(--accent-primary)' }}></span>
+            <span style={{ fontWeight: 700, letterSpacing: '2px', fontSize: '0.875rem', textTransform: 'uppercase' }}>
+              Full Stack Solutions
+            </span>
+          </div>
+
+          <h1 style={{ 
+            fontSize: 'clamp(2.5rem, 6vw, 4.5rem)',
+            fontWeight: 900,
+            lineHeight: 1.1,
+            marginBottom: '1.5rem',
+            color: 'var(--text-primary)'
+          }}>
+            Building <span className="gradient-text">Scalable</span> <br />
+            Digital Experiences
           </h1>
 
-          <h3 className="hero-text text-2xl md:text-3xl text-gray-400">
-            MERN Stack Developer
-          </h3>
-
-          <p className="hero-text text-xl text-[#EC4899] font-medium">
-            Building Modern Web Experiences
+          <p style={{
+            fontSize: '1.125rem',
+            color: 'var(--text-secondary)',
+            marginBottom: '2.5rem',
+            maxWidth: '550px',
+            lineHeight: 1.7,
+          }}>
+            Hi, I&apos;m <b style={{ color: 'var(--text-primary)' }}>MD SIAM KHAN</b>. I specialize in crafting high-performance 
+            MERN stack applications with clean code and intuitive user interfaces.
           </p>
 
-          <div className="hero-text flex flex-wrap gap-4 justify-center md:justify-start">
+          <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap' }}>
             <motion.a
-              href="https://drive.google.com/file/d/1ROrM-vsxqB6anVHQJXF3jH-NIgD70l1w/view?usp=sharing"
+              href="https://drive.google.com/file/d/1rLgA7_LjkotrET9ZwjUQK2GEO0NG-6hA/view?usp=sharing"
               target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ scale: 1.05 }}
+              whileHover={{ scale: 1.05, boxShadow: '0 10px 20px rgba(99, 102, 241, 0.4)' }}
               whileTap={{ scale: 0.95 }}
-              className="px-6 py-3 bg-[#6366F1] text-white rounded-lg font-semibold flex items-center gap-2 shadow-lg shadow-[#6366F1]/50 hover:shadow-[#6366F1]/70 transition-all"
+              style={{
+                padding: '1.1rem 2.5rem',
+                background: 'linear-gradient(135deg, #6366f1 0%, #ec4899 100%)',
+                color: 'white',
+                borderRadius: '50px',
+                fontWeight: 700,
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.75rem',
+                textDecoration: 'none',
+              }}
             >
-              <HiDownload size={20} />
-              Download Resume
+              <Download size={18} />
+              Resume
             </motion.a>
 
             <motion.a
               href="#contact"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-6 py-3 border-2 border-[#EC4899] text-[#EC4899] rounded-lg font-semibold hover:bg-[#EC4899]/10 transition-all"
+              style={{
+                padding: '1.1rem 2.5rem',
+                background: 'transparent',
+                color: 'var(--text-primary)',
+                border: '2px solid var(--border-color)',
+                borderRadius: '50px',
+                fontWeight: 700,
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.75rem',
+                textDecoration: 'none',
+              }}
             >
-              Contact Me
+              Let&apos;s Talk
+              <ArrowRight size={18} className="text-[#6366f1]" />
             </motion.a>
           </div>
+        </motion.div>
 
-          <div className="hero-text flex gap-4 justify-center md:justify-start pt-4">
-            {socialLinks.map((social, index) => (
-              <motion.a
-                key={index}
-                href={social.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.2, y: -5 }}
-                whileTap={{ scale: 0.9 }}
-                className="p-3 bg-[#0f172a] rounded-full border border-gray-800 hover:border-[#6366F1] transition-all shadow-lg"
-                style={{
-                  boxShadow: `0 0 20px ${social.color}30`,
-                }}
-              >
-                {social.icon}
-              </motion.a>
-            ))}
-          </div>
-        </div>
-
-        <div className="flex justify-center">
-          <motion.div
-            ref={imageRef}
-            whileHover={{ scale: 1.05 }}
-            className="relative"
-          >
-            <div className="absolute inset-0 bg-gradient-to-br from-[#6366F1] to-[#EC4899] rounded-full blur-2xl opacity-30 animate-pulse"></div>
-            <img
-              src='https://i.ibb.co.com/Ng66dkCB/219357395.jpg'
-              alt="MD SIAM KHAN"
-              className="relative rounded-full w-72 h-72 md:h-80 md:w-80  lg:w-96 lg:h-96 object-cover border-4 border-[#6366F1] shadow-2xl shadow-[#6366F1]/50"
-            />
-          </motion.div>
-        </div>
       </div>
     </section>
   );

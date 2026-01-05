@@ -1,17 +1,12 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import emailjs from 'emailjs-com';
 import Swal from 'sweetalert2';
-import { FaEnvelope, FaMapMarkerAlt, FaPaperPlane, FaPhone } from 'react-icons/fa';
-
-gsap.registerPlugin(ScrollTrigger);
+import { Mail, MapPin, Send, Phone } from 'lucide-react';
 
 export default function ContactSection() {
-  const sectionRef = useRef(null);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -19,31 +14,17 @@ export default function ContactSection() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.from('.contact-title', {
-        scrollTrigger: {
-          trigger: '.contact-title',
-          start: 'top 80%',
-        },
-        opacity: 0,
-        y: 50,
-        duration: 1,
-      });
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
-
   const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
   };
-const EMAILJS_SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
-const EMAILJS_TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
-const EMAILJS_USER_ID = process.env.NEXT_PUBLIC_EMAILJS_USER_ID;
+
+  const EMAILJS_SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+  const EMAILJS_TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+  const EMAILJS_USER_ID = process.env.NEXT_PUBLIC_EMAILJS_USER_ID;
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -65,9 +46,9 @@ const EMAILJS_USER_ID = process.env.NEXT_PUBLIC_EMAILJS_USER_ID;
         title: 'Success!',
         text: 'Your message has been sent successfully!',
         icon: 'success',
-        background: '#0f172a',
-        color: '#e2e8f0',
-        confirmButtonColor: '#6366F1',
+        background: 'var(--bg-secondary)',
+        color: 'var(--text-primary)',
+        confirmButtonColor: '#6366f1',
       });
 
       setFormData({ name: '', email: '', message: '' });
@@ -76,9 +57,9 @@ const EMAILJS_USER_ID = process.env.NEXT_PUBLIC_EMAILJS_USER_ID;
         title: 'Error!',
         text: 'Failed to send message. Please try again later.',
         icon: 'error',
-        background: '#0f172a',
-        color: '#e2e8f0',
-        confirmButtonColor: '#EC4899',
+        background: 'var(--bg-secondary)',
+        color: 'var(--text-primary)',
+        confirmButtonColor: '#ec4899',
       });
     } finally {
       setIsSubmitting(false);
@@ -88,62 +69,108 @@ const EMAILJS_USER_ID = process.env.NEXT_PUBLIC_EMAILJS_USER_ID;
   return (
     <section
       id="contact"
-      ref={sectionRef}
-      className="py-10 md:py-14 lg:py-20 px-4 relative overflow-hidden"
+      style={{
+        padding: '2rem',
+        position: 'relative',
+        background: 'var(--bg-secondary)',
+      }}
     >
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#6366F1]/5 to-transparent"></div>
-
-      <div className="max-w-6xl mx-auto relative z-10">
+      <div className="max-w-7xl mx-auto relative z-10">
         <motion.div
-          className="contact-title text-center mb-16"
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          initial={{ opacity: 0, y: 50 }}
+          viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.8 }}
+          style={{ textAlign: 'center', marginBottom: '4rem' }}
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            <span className="text-white">Get In</span>{' '}
-            <span className="text-[#6366F1]">Touch</span>
+          <h2 style={{ 
+            fontSize: 'clamp(2.5rem, 6vw, 4rem)',
+            fontWeight: 900,
+            marginBottom: '1rem',
+          }}>
+            <span style={{ color: 'var(--text-primary)' }}>Get In</span>{' '}
+            <span className="gradient-text">Touch</span>
           </h2>
-          <div className="w-60 md:w-72 lg:w-80 h-1 bg-gradient-to-r from-[#6366F1] to-[#EC4899] mx-auto rounded-full"></div>
-          <p className="text-gray-400 mt-6 max-w-2xl mx-auto">
-            Have a project in mind or want to collaborate? Feel free to reach
-            out!
+          <p style={{ 
+            color: 'var(--text-secondary)', 
+            marginTop: '1.5rem',
+            fontSize: '1.125rem',
+            maxWidth: '700px',
+            margin: '1.5rem auto 0',
+          }}>
+            Have a project in mind or want to collaborate? Let's build something
+            amazing together!
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-8">
+        <div style={{ 
+          display: 'grid', 
+          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+          gap: '2.5rem',
+        }}>
           <motion.div
-            whileInView={{ opacity: 1, x: 0 }}
             initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="space-y-6"
+            style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}
           >
-            <div className="bg-[#0f172a]/50 backdrop-blur-sm border border-gray-800 rounded-2xl p-6 shadow-xl">
-              <div className="flex items-start gap-4">
-                <div className="p-3 bg-[#6366F1]/10 rounded-lg">
-                  <FaPhone size={24} className="text-[#6366F1]" />
+            <div className="glass-card" style={{ padding: '2rem', borderRadius: '20px' }}>
+              <div style={{ display: 'flex', alignItems: 'start', gap: '1.5rem' }}>
+                <div style={{
+                  padding: '1rem',
+                  background: 'linear-gradient(135deg, #6366f1, #ec4899)',
+                  borderRadius: '12px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}>
+                  <Phone size={24} color="white" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-white mb-2">Phone Number</h3>
-                  <p
-                    
-                    className="text-gray-400 hover:text-[#6366F1] transition-colors"
-                  >
+                  <h3 style={{ 
+                    fontSize: '1.25rem', 
+                    fontWeight: 700,
+                    marginBottom: '0.5rem',
+                    color: 'var(--text-primary)',
+                  }}>
+                    Phone Number
+                  </h3>
+                  <p style={{ color: 'var(--text-secondary)' }}>
                     01881361160
                   </p>
                 </div>
               </div>
             </div>
-            <div className="bg-[#0f172a]/50 backdrop-blur-sm border border-gray-800 rounded-2xl p-6 shadow-xl">
-              <div className="flex items-start gap-4">
-                <div className="p-3 bg-[#6366F1]/10 rounded-lg">
-                  <FaEnvelope size={24} className="text-[#6366F1]" />
+
+            <div className="glass-card" style={{ padding: '2rem', borderRadius: '20px' }}>
+              <div style={{ display: 'flex', alignItems: 'start', gap: '1.5rem' }}>
+                <div style={{
+                  padding: '1rem',
+                  background: 'linear-gradient(135deg, #6366f1, #ec4899)',
+                  borderRadius: '12px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}>
+                  <Mail size={24} color="white" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-white mb-2">Email</h3>
+                  <h3 style={{ 
+                    fontSize: '1.25rem', 
+                    fontWeight: 700,
+                    marginBottom: '0.5rem',
+                    color: 'var(--text-primary)',
+                  }}>
+                    Email
+                  </h3>
                   <a
                     href="mailto:nssiam99@gmail.com"
-                    className="text-gray-400 hover:text-[#6366F1] transition-colors"
+                    style={{ 
+                      color: 'var(--text-secondary)',
+                      textDecoration: 'none',
+                    }}
+                    className="hover:text-[var(--accent-primary)]"
                   >
                     nssiam99@gmail.com
                   </a>
@@ -151,54 +178,91 @@ const EMAILJS_USER_ID = process.env.NEXT_PUBLIC_EMAILJS_USER_ID;
               </div>
             </div>
 
-            <div className="bg-[#0f172a]/50 backdrop-blur-sm border border-gray-800 rounded-2xl p-6 shadow-xl">
-              <div className="flex items-start gap-4">
-                <div className="p-3 bg-[#EC4899]/10 rounded-lg">
-                  <FaMapMarkerAlt size={24} className="text-[#EC4899]" />
+            <div className="glass-card" style={{ padding: '2rem', borderRadius: '20px' }}>
+              <div style={{ display: 'flex', alignItems: 'start', gap: '1.5rem' }}>
+                <div style={{
+                  padding: '1rem',
+                  background: 'linear-gradient(135deg, #ec4899, #f59e0b)',
+                  borderRadius: '12px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}>
+                  <MapPin size={24} color="white" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-white mb-2">
+                  <h3 style={{ 
+                    fontSize: '1.25rem', 
+                    fontWeight: 700,
+                    marginBottom: '0.5rem',
+                    color: 'var(--text-primary)',
+                  }}>
                     Location
                   </h3>
-                  <p className="text-gray-400">Dhaka, Bangladesh</p>
+                  <p style={{ color: 'var(--text-secondary)' }}>
+                    Dhaka, Bangladesh
+                  </p>
                 </div>
               </div>
             </div>
 
-            <div className="bg-[#0f172a]/50 backdrop-blur-sm border border-gray-800 rounded-2xl p-6 shadow-xl">
-              <h3 className="text-xl font-bold text-white mb-4">
+            <div className="glass-card" style={{ padding: '2rem', borderRadius: '20px' }}>
+              <h3 style={{ 
+                fontSize: '1.25rem', 
+                fontWeight: 700,
+                marginBottom: '1rem',
+                color: 'var(--text-primary)',
+              }}>
                 Why Work With Me?
               </h3>
-              <ul className="space-y-3 text-gray-400">
-                <li className="flex items-start gap-2">
-                  <span className="text-[#6366F1] mt-1">▹</span>
-                  <span>Clean and maintainable code</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-[#6366F1] mt-1">▹</span>
-                  <span>Responsive and modern design</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-[#6366F1] mt-1">▹</span>
-                  <span>Fast delivery and communication</span>
-                </li>
+              <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                {[
+                  'Clean and maintainable code',
+                  'Modern, responsive design',
+                  'Fast delivery and communication',
+                  'Scalable architecture',
+                ].map((item, idx) => (
+                  <li key={idx} style={{ 
+                    display: 'flex', 
+                    alignItems: 'start', 
+                    gap: '0.5rem',
+                    color: 'var(--text-secondary)',
+                  }}>
+                    <span style={{ color: 'var(--accent-primary)', marginTop: '0.25rem' }}>▹</span>
+                    <span>{item}</span>
+                  </li>
+                ))}
               </ul>
             </div>
           </motion.div>
 
           <motion.div
-            whileInView={{ opacity: 1, x: 0 }}
             initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
             <form
               onSubmit={handleSubmit}
-              className="bg-[#0f172a]/50 backdrop-blur-sm border border-gray-800 rounded-2xl p-8 shadow-xl space-y-6"
+              className="glass-card"
+              style={{
+                padding: '2.5rem',
+                borderRadius: '24px',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '1.5rem',
+              }}
             >
               <div>
                 <label
                   htmlFor="name"
-                  className="block text-sm font-semibold text-gray-300 mb-2"
+                  style={{
+                    display: 'block',
+                    fontSize: '0.9375rem',
+                    fontWeight: 600,
+                    color: 'var(--text-primary)',
+                    marginBottom: '0.5rem',
+                  }}
                 >
                   Your Name
                 </label>
@@ -209,7 +273,15 @@ const EMAILJS_USER_ID = process.env.NEXT_PUBLIC_EMAILJS_USER_ID;
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 bg-[#020617] border border-gray-700 rounded-lg text-white focus:outline-none focus:border-[#6366F1] transition-colors"
+                  style={{
+                    width: '100%',
+                    padding: '1rem',
+                    background: 'var(--bg-tertiary)',
+                    border: '1px solid var(--border-color)',
+                    borderRadius: '12px',
+                    color: 'var(--text-primary)',
+                    fontSize: '1rem',
+                  }}
                   placeholder="John Doe"
                 />
               </div>
@@ -217,7 +289,13 @@ const EMAILJS_USER_ID = process.env.NEXT_PUBLIC_EMAILJS_USER_ID;
               <div>
                 <label
                   htmlFor="email"
-                  className="block text-sm font-semibold text-gray-300 mb-2"
+                  style={{
+                    display: 'block',
+                    fontSize: '0.9375rem',
+                    fontWeight: 600,
+                    color: 'var(--text-primary)',
+                    marginBottom: '0.5rem',
+                  }}
                 >
                   Your Email
                 </label>
@@ -228,7 +306,15 @@ const EMAILJS_USER_ID = process.env.NEXT_PUBLIC_EMAILJS_USER_ID;
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 bg-[#020617] border border-gray-700 rounded-lg text-white focus:outline-none focus:border-[#6366F1] transition-colors"
+                  style={{
+                    width: '100%',
+                    padding: '1rem',
+                    background: 'var(--bg-tertiary)',
+                    border: '1px solid var(--border-color)',
+                    borderRadius: '12px',
+                    color: 'var(--text-primary)',
+                    fontSize: '1rem',
+                  }}
                   placeholder="john@example.com"
                 />
               </div>
@@ -236,7 +322,13 @@ const EMAILJS_USER_ID = process.env.NEXT_PUBLIC_EMAILJS_USER_ID;
               <div>
                 <label
                   htmlFor="message"
-                  className="block text-sm font-semibold text-gray-300 mb-2"
+                  style={{
+                    display: 'block',
+                    fontSize: '0.9375rem',
+                    fontWeight: 600,
+                    color: 'var(--text-primary)',
+                    marginBottom: '0.5rem',
+                  }}
                 >
                   Your Message
                 </label>
@@ -246,8 +338,17 @@ const EMAILJS_USER_ID = process.env.NEXT_PUBLIC_EMAILJS_USER_ID;
                   value={formData.message}
                   onChange={handleChange}
                   required
-                  className="w-full h-28
-                      md:h-[222px] px-4 py-3 bg-[#020617] border border-gray-700 rounded-lg text-white focus:outline-none focus:border-[#6366F1] transition-colors resize-none"
+                  style={{
+                    width: '100%',
+                    minHeight: '180px',
+                    padding: '1rem',
+                    background: 'var(--bg-tertiary)',
+                    border: '1px solid var(--border-color)',
+                    borderRadius: '12px',
+                    color: 'var(--text-primary)',
+                    fontSize: '1rem',
+                    resize: 'vertical',
+                  }}
                   placeholder="Tell me about your project..."
                 ></textarea>
               </div>
@@ -257,13 +358,29 @@ const EMAILJS_USER_ID = process.env.NEXT_PUBLIC_EMAILJS_USER_ID;
                 disabled={isSubmitting}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="w-full px-6 py-4 bg-gradient-to-r from-[#6366F1] to-[#EC4899] text-white font-semibold rounded-lg shadow-lg shadow-[#6366F1]/50 hover:shadow-[#EC4899]/50 transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="magnetic-btn"
+                style={{
+                  width: '100%',
+                  padding: '1.125rem',
+                  background: 'linear-gradient(135deg, #6366f1, #ec4899)',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '12px',
+                  fontWeight: 600,
+                  fontSize: '1rem',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '0.5rem',
+                  cursor: isSubmitting ? 'not-allowed' : 'pointer',
+                  opacity: isSubmitting ? 0.7 : 1,
+                }}
               >
                 {isSubmitting ? (
                   <span>Sending...</span>
                 ) : (
                   <>
-                    <FaPaperPlane size={18} />
+                    <Send size={20} />
                     <span>Send Message</span>
                   </>
                 )}

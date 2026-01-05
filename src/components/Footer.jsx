@@ -1,29 +1,31 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { FaGithub, FaLinkedin, FaEnvelope, FaFacebook, FaHeart } from 'react-icons/fa';
+import { Github, Linkedin, Mail, Facebook, Heart } from 'lucide-react';
+import { useTheme } from './ThemeProvider';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const { isDark, toggleTheme } = useTheme();
 
   const socialLinks = [
     {
-      icon: <FaGithub size={20} />,
+      icon: Github,
       href: 'https://github.com/siam-khan-alt',
       label: 'GitHub',
     },
     {
-      icon: <FaLinkedin size={20} />,
+      icon: Linkedin,
       href: 'https://www.linkedin.com/in/siam-khan-sp99/',
       label: 'LinkedIn',
     },
     {
-      icon: <FaEnvelope size={20} />,
+      icon: Mail,
       href: 'mailto:nssiam99@gmail.com',
       label: 'Email',
     },
     {
-      icon: <FaFacebook size={20} />,
+      icon: Facebook,
       href: 'https://www.facebook.com/profile.php?id=100078237812772',
       label: 'Facebook',
     },
@@ -32,41 +34,86 @@ export default function Footer() {
   const quickLinks = [
     { name: 'Home', href: '#home' },
     { name: 'About', href: '#about' },
+    { name: 'Skills', href: '#skills' },
     { name: 'Projects', href: '#projects' },
     { name: 'Contact', href: '#contact' },
   ];
 
   return (
-    <footer className="bg-[#0f172a] border-t border-gray-800 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-[#6366F1]/5 to-transparent"></div>
-
-      <div className="max-w-6xl mx-auto px-4 py-12 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-          <div className="text-center md:text-left">
+    <footer style={{
+      background: 'var(--bg-secondary)',
+      borderTop: '1px solid var(--border-color)',
+      position: 'relative',
+      overflow: 'hidden',
+    }}>
+      <div style={{
+        maxWidth: '1280px',
+        margin: '0 auto',
+        padding: '4rem 2rem',
+        position: 'relative',
+        zIndex: 10,
+      }}>
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+          gap: '3rem',
+          marginBottom: '3rem',
+        }}>
+          <div style={{ textAlign: 'center' }}>
             <motion.h3
               whileHover={{ scale: 1.05 }}
-              className="text-2xl font-bold mb-4"
-            >
-              <span className="text-[#6366F1]">SIAM</span>
-              <span className="text-[#EC4899]">.</span>
+              style={{
+                fontSize: '2rem',
+                fontWeight: 900,
+                marginBottom: '1rem',
+              }}
+              className='flex flex-col justify-center items-center'
+            > <img 
+              src={isDark 
+                ? "https://i.ibb.co.com/hxW76N6P/Gemini-Generated-Image-9zobna9zobna9zob.png" 
+                : "https://i.ibb.co.com/SkX6jMk/Gemini-Generated-Image-rwzetrwzetrwzetr.png"
+              } 
+              alt="Logo" 
+              className="h-16 w-16 object-cover rounded-xl"
+            />
+              <span className="gradient-text">SIAM KHAN</span>
             </motion.h3>
-            <p className="text-gray-400 text-sm">
-              MERN Stack Developer passionate about building modern web
-              applications.
+            <p style={{ 
+              color: 'var(--text-secondary)', 
+              fontSize: '0.9375rem',
+              lineHeight: 1.6,
+            }}>
+              MERN Stack Developer passionate about building modern, scalable
+              web applications.
             </p>
           </div>
 
-          <div className="text-center">
-            <h4 className="text-lg font-semibold text-white mb-4">
+          <div style={{ textAlign: 'center' }}>
+            <h4 style={{ 
+              fontSize: '1.125rem', 
+              fontWeight: 700,
+              color: 'var(--text-primary)',
+              marginBottom: '1.5rem',
+            }}>
               Quick Links
             </h4>
-            <div className="flex flex-wrap justify-center gap-4">
+            <div style={{ 
+              display: 'flex', 
+              flexWrap: 'wrap', 
+              justifyContent: 'center',
+              gap: '1rem',
+            }}>
               {quickLinks.map((link) => (
                 <motion.a
                   key={link.name}
                   href={link.href}
-                  whileHover={{ scale: 1.1, color: '#6366F1' }}
-                  className="text-gray-400 hover:text-[#6366F1] transition-colors text-sm"
+                  whileHover={{ scale: 1.1 }}
+                  style={{
+                    color: 'var(--text-secondary)',
+                    fontSize: '0.9375rem',
+                    textDecoration: 'none',
+                  }}
+                  className="hover:text-[var(--accent-primary)]"
                 >
                   {link.name}
                 </motion.a>
@@ -74,11 +121,20 @@ export default function Footer() {
             </div>
           </div>
 
-          <div className="text-center md:text-right">
-            <h4 className="text-lg font-semibold text-white mb-4">
+          <div style={{ textAlign: 'center' }}>
+            <h4 style={{ 
+              fontSize: '1.125rem', 
+              fontWeight: 700,
+              color: 'var(--text-primary)',
+              marginBottom: '1.5rem',
+            }}>
               Connect With Me
             </h4>
-            <div className="flex justify-center md:justify-end gap-4">
+            <div style={{ 
+              display: 'flex', 
+              justifyContent: 'center',
+              gap: '1rem',
+            }}>
               {socialLinks.map((social, index) => (
                 <motion.a
                   key={index}
@@ -87,28 +143,53 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.2, y: -5 }}
                   whileTap={{ scale: 0.9 }}
-                  className="p-3 bg-[#020617] rounded-full border border-gray-700 hover:border-[#6366F1] transition-all shadow-lg hover:shadow-[#6366F1]/30"
+                  className="magnetic-btn"
+                  style={{
+                    padding: '0.875rem',
+                    background: 'var(--bg-tertiary)',
+                    borderRadius: '12px',
+                    border: '1px solid var(--border-color)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: 'var(--accent-primary)',
+                  }}
                   aria-label={social.label}
                 >
-                  {social.icon}
+                  <social.icon size={20} />
                 </motion.a>
               ))}
             </div>
           </div>
         </div>
 
-        <div className="border-t border-gray-800 pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-400">
-            <p className="flex items-center gap-2">
-              <span>© {currentYear} MD SIAM KHAN. All rights reserved.</span>
+        <div style={{
+          borderTop: '1px solid var(--border-color)',
+          paddingTop: '2rem',
+        }}>
+          <div style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            gap: '1rem',
+            fontSize: '0.9375rem',
+            color: 'var(--text-secondary)',
+          }}>
+            <p style={{ textAlign: 'center' }}>
+              © {currentYear} MD SIAM KHAN. All rights reserved.
             </p>
-            <p className="flex items-center gap-2">
+            <p style={{ 
+              display: 'flex', 
+              alignItems: 'center', 
+              gap: '0.5rem',
+              textAlign: 'center',
+            }}>
               <span>Made with</span>
               <motion.span
                 animate={{ scale: [1, 1.2, 1] }}
                 transition={{ duration: 1, repeat: Infinity }}
               >
-                <FaHeart className="text-[#EC4899]" />
+                <Heart size={16} style={{ color: 'var(--accent-secondary)' }} fill="currentColor" />
               </motion.span>
               <span>and Next.js</span>
             </p>

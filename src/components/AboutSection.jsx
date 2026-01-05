@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { useRef } from "react";
 import { motion } from "framer-motion";
@@ -9,6 +9,7 @@ import {
   SiMongodb,
   SiTailwindcss,
 } from "react-icons/si";
+import { Rocket, Brain, Activity, Target } from "lucide-react";
 
 export default function AboutSection() {
   const sectionRef = useRef(null);
@@ -18,43 +19,43 @@ export default function AboutSection() {
       name: "React.js",
       icon: <FaReact size={48} />,
       color: "#61DAFB",
-      level: 85,
-      description: "Advanced",
+      tag: "Advanced Library",
+      description: "Building reactive and modular UI components.",
     },
     {
       name: "Next.js",
       icon: <SiNextdotjs size={48} />,
       color: "#ffffff",
-      level: 40,
-      description: "Learning",
+      tag: "Production Framework",
+      description: "SSR, ISR, and optimized performance.",
     },
     {
       name: "Node.js",
       icon: <FaNodeJs size={48} />,
       color: "#339933",
-      level: 75,
-      description: "Proficient",
+      tag: "Runtime Environment",
+      description: "Scalable backend architecture.",
     },
     {
       name: "Express.js",
       icon: <SiExpress size={48} />,
       color: "#ffffff",
-      level: 70,
-      description: "Proficient",
+      tag: "Backend Framework",
+      description: "Efficient RESTful API development.",
     },
     {
       name: "MongoDB",
       icon: <SiMongodb size={48} />,
       color: "#47A248",
-      level: 50,
-      description: "Expert",
+      tag: "NoSQL Database",
+      description: "Schema design and data aggregation.",
     },
     {
       name: "Tailwind CSS",
       icon: <SiTailwindcss size={48} />,
       color: "#06B6D4",
-      level: 90,
-      description: "Expert",
+      tag: "Styling Engine",
+      description: "Rapid UI development with utility classes.",
     },
   ];
 
@@ -62,145 +63,136 @@ export default function AboutSection() {
     <section
       id="about"
       ref={sectionRef}
-      className="py-10 md:py-14 lg:py-20 px-4 relative overflow-hidden"
+      style={{ 
+        padding: '2rem',
+        background: 'var(--bg-secondary)',
+        position: 'relative',
+      }}
     >
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#6366F1]/5 to-transparent"></div>
-
       <div className="max-w-6xl mx-auto relative z-10">
         <motion.div
-          className="about-title text-center mb-12"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.5 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.8 }}
+          style={{ textAlign: 'center', marginBottom: '4rem' }}
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            <span className="text-white">About</span>{" "}
-            <span className="text-[#6366F1]">Me</span>
+          <h2 style={{ fontSize: 'clamp(2.5rem, 6vw, 4rem)', fontWeight: 900, marginBottom: '1rem' }}>
+            <span style={{ color: 'var(--text-primary)' }}>About</span>{" "}
+            <span className="gradient-text">Me</span>
           </h2>
-          <div className="w-60 md:w-72 lg:w-80 h-1 bg-gradient-to-r from-[#6366F1] to-[#EC4899] mx-auto rounded-full"></div>
         </motion.div>
 
-        <div className="mb-20">
+        <div style={{ marginBottom: '4rem' }}>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.5 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="bg-[#0f172a]/50 backdrop-blur-sm border border-gray-800 rounded-2xl p-6 lg:p-8 shadow-2xl shadow-[#6366F1]/10"
+            className="glass-card"
+            style={{ padding: '3rem', borderRadius: '32px' }}
           >
-            <article className="text-gray-300 text-base leading-relaxed space-y-8">
-              {/* Section 1: The Programming Journey */}
-              <div>
-                <h3 className="text-2xl font-bold mb-3 text-[#6366F1] border-b border-gray-700 pb-1">
-                  🚀 The Programming Journey
-                </h3>
+            <article style={{ color: 'var(--text-secondary)', fontSize: '1.0625rem', lineHeight: 1.8 }}>
+              
+              <div style={{ marginBottom: '2.5rem' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1rem' }}>
+                  <Rocket style={{ color: 'var(--accent-primary)' }} size={28} />
+                  <h3 style={{ fontSize: '1.75rem', fontWeight: 700, color: 'var(--text-primary)' }}>
+                    The Programming Journey
+                  </h3>
+                </div>
                 <p>
-                  My initial spark for programming came from a restless drive to
-                  find a pursuit that would continuously challenge my mind,
-                  sharpen my problem-solving skills, and offer a path to
-                  creation and professional growth. My journey began with an
-                  early interest in technology, leading me to complete a
-                  **6-month Office Applications Course** where I earned an A+
-                  grade. My professional development journey truly took off with
-                  **Programming Hero**, where I am currently focused on
-                  mastering the **MERN stack**, eager to build modern, scalable
-                  web applications.
+                  My professional development journey truly took off with Programming Hero, 
+                  where I am currently focused on mastering the MERN stack. I earned an A+ 
+                  in Office Applications, which set the foundation for my detail-oriented approach 
+                  to building modern, scalable web applications.
                 </p>
               </div>
 
-              {/* Section 2: The Work I Enjoy and My Personality */}
-              <div>
-                <h3 className="text-2xl font-bold mb-3 text-[#6366F1] border-b border-gray-700 pb-1">
-                  🧠 Work Ethic and Personality
-                </h3>
+              <div style={{ marginBottom: '2.5rem' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1rem' }}>
+                  <Brain style={{ color: 'var(--accent-primary)' }} size={28} />
+                  <h3 style={{ fontSize: '1.75rem', fontWeight: 700, color: 'var(--text-primary)' }}>
+                    Work Ethic and Personality
+                  </h3>
+                </div>
                 <p>
-                  I find the most satisfaction in work that seamlessly blends
-                  logic and exceptional user experience. My core passion lies in
-                  **identifying complex problems and crafting elegant,
-                  functional solutions**. As a person, I am characterized by a
-                  **calm and composed demeanor**. I make every effort to remain
-                  balanced and avoid making rash decisions, successfully
-                  managing to stay calm in challenging situations nearly 95% of
-                  the time. This composed nature directly translates to my code:
-                  it allows me to stay focused and detail-oriented, ensuring
-                  clean and maintainable solutions.
+                  I thrive on solving complex problems with elegant, functional solutions. 
+                  Characterized by a composed nature, I maintain balance in challenging 
+                  situations, ensuring my code remains clean, maintainable, and highly focused 
+                  on the user experience.
                 </p>
               </div>
 
-              {/* Section 3: Beyond the Code (Hobbies and Balance) */}
               <div>
-                <h3 className="text-2xl font-bold mb-3 text-[#6366F1] border-b border-gray-700 pb-1">
-                  🧘‍♂️ Beyond the Code
-                </h3>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1rem' }}>
+                  <Activity style={{ color: 'var(--accent-primary)' }} size={28} />
+                  <h3 style={{ fontSize: '1.75rem', fontWeight: 700, color: 'var(--text-primary)' }}>
+                    Beyond the Code
+                  </h3>
+                </div>
                 <p>
-                  While coding is my professional focus, I believe in
-                  maintaining a strong life balance. Away from the screen, I
-                  truly enjoy **long-distance walking**, especially in natural
-                  settings, as it clears my mind and sharpens my perspective.
-                  Spending quality time with loved ones and exploring new places
-                  rejuvenates my creativity. What started as a technical
-                  aspiration, programming itself has evolved into a dedicated
-                  **passion and hobby**. As a practicing Muslim, I strive to
-                  bring integrity, dedication, and balance into my daily life
-                  and professional commitments.
+                  As a practicing Muslim, I bring integrity and dedication to my commitments. 
+                  Outside of coding, I enjoy long-distance walking in nature to sharpen my 
+                  perspective and rejuvenate my creativity, always striving for a healthy life-work balance.
                 </p>
               </div>
+
             </article>
           </motion.div>
         </div>
+
         <motion.div
-          className="about-title text-center mb-12"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          style={{ textAlign: 'center', marginBottom: '3rem' }}
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            <span className="text-white">My</span>{" "}
-            <span className="text-[#6366F1]">Skills</span>
+          <h2 style={{ fontSize: 'clamp(2rem, 5vw, 3rem)', fontWeight: 900 }}>
+            <span style={{ color: 'var(--text-primary)' }}>Technical</span>{" "}
+            <span className="gradient-text">Proficiency</span>
           </h2>
-          <div className="w-60 md:w-72 lg:w-80 h-1 bg-gradient-to-r from-[#6366F1] to-[#EC4899] mx-auto rounded-full"></div>
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+          gap: '2rem',
+        }}>
           {skills.map((skill, index) => (
             <motion.div
               key={skill.name}
-              className="skill-card bg-[#0f172a]/50 backdrop-blur-sm border border-gray-800 rounded-2xl p-6 shadow-xl hover:shadow-2xl hover:shadow-[#6366F1]/20 transition-all duration-300"
-              initial={{ opacity: 0, y: 50 }}
+              className="glass-card"
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              whileHover={{ scale: 1.05, y: -10 }}
+              whileHover={{ scale: 1.03, y: -5 }}
+              style={{ padding: '2rem', borderRadius: '24px', cursor: 'pointer', border: '1px solid var(--border-color)' }}
             >
-              <div className="flex flex-col items-center space-y-4">
-                <motion.div
-                  whileHover={{ rotate: 360 }}
-                  transition={{ duration: 0.6 }}
-                  style={{ color: skill.color }}
-                  className="mb-2"
-                >
-                  {skill.icon}
-                </motion.div>
-
-                <h3 className="text-xl font-bold text-white">{skill.name}</h3>
-
-                <div className="w-full bg-gray-800 rounded-full h-3 overflow-hidden">
-                  <motion.div
-                    initial={{ width: 0 }}
-                    whileInView={{ width: `${skill.level}%` }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 1.5, delay: index * 0.1 }}
-                    className="h-full rounded-full bg-gradient-to-r from-[#6366F1] to-[#EC4899]"
-                  ></motion.div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                  <div style={{ color: skill.color }}>{skill.icon}</div>
+                  <span style={{ 
+                    padding: '4px 12px', 
+                    borderRadius: '100px', 
+                    fontSize: '0.75rem', 
+                    background: `${skill.color}15`, 
+                    color: skill.color,
+                    border: `1px solid ${skill.color}30`,
+                    fontWeight: 600 
+                  }}>
+                    {skill.tag}
+                  </span>
                 </div>
 
-                <div className="flex justify-between w-full text-sm">
-                  <span className="text-gray-400">{skill.description}</span>
-                  <span className="text-[#6366F1] font-semibold">
-                    {skill.level}%
-                  </span>
+                <div>
+                  <h3 style={{ fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '0.5rem' }}>
+                    {skill.name}
+                  </h3>
+                  <p style={{ color: 'var(--text-secondary)', fontSize: '0.9375rem', lineHeight: 1.5 }}>
+                    {skill.description}
+                  </p>
                 </div>
               </div>
             </motion.div>

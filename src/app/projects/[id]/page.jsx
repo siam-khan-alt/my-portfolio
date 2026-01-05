@@ -1,6 +1,5 @@
 import { FaGithub, FaExternalLinkAlt, FaTools, FaLightbulb, FaRocket } from 'react-icons/fa';
 import Link from 'next/link';
-import Image from 'next/image';
 import { projectsData } from '../../../data/projectsData';
 
 export async function generateMetadata({ params }) {
@@ -23,40 +22,101 @@ export default async function ProjectDetailsPage({ params }) {
 
   if (!project) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-[#0f172a] text-white">
-        <h1 className="text-3xl font-bold">404 | Project Not Found</h1>
+      <div style={{
+        minHeight: '100vh',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        background: 'var(--bg-primary)',
+        color: 'var(--text-primary)',
+      }}>
+        <h1 style={{ fontSize: '2rem', fontWeight: 700 }}>
+          404 | Project Not Found
+        </h1>
       </div>
     );
   }
 
   return (
-    <main className="min-h-screen bg-[#0f172a] text-gray-300 py-16 px-4 sm:px-8">
+    <main style={{
+      minHeight: '100vh',
+      background: 'var(--bg-primary)',
+      color: 'var(--text-secondary)',
+      padding: '4rem 2rem 4rem',
+    }}>
       <div className="max-w-6xl mx-auto">
 
-        <Link href="/#projects" className="flex items-center text-[#6366F1] hover:text-[#EC4899] transition mb-8">
+        <Link 
+          href="/#projects" 
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            color: 'var(--accent-primary)',
+            marginBottom: '2rem',
+            fontSize: '1rem',
+            textDecoration: 'none',
+          }}
+          className="hover:text-[var(--accent-secondary)] transition-colors"
+        >
           &larr; Back to Projects
         </Link>
         
-        <section className="mb-12">
-          <h1 className="text-5xl font-extrabold text-white mb-3">{project.title}</h1>
-          <p className="text-xl text-[#EC4899] mb-6">{project.tagline}</p>
+        <section style={{ marginBottom: '3rem' }}>
+          <h1 style={{
+            fontSize: 'clamp(2.5rem, 6vw, 3.5rem)',
+            fontWeight: 900,
+            color: 'var(--text-primary)',
+            marginBottom: '1rem',
+          }}>
+            {project.title}
+          </h1>
+          <p style={{
+            fontSize: '1.25rem',
+            color: 'var(--accent-secondary)',
+            marginBottom: '2rem',
+          }}>
+            {project.tagline}
+          </p>
           
-          <div className="relative w-full md:h-96 rounded-xl overflow-hidden shadow-2xl shadow-[#6366F1]/10">
+          <div className="glass-card" style={{
+            borderRadius: '24px',
+            overflow: 'hidden',
+            marginBottom: '2rem',
+          }}>
             <img
               src={project.imageUrl}
               alt={project.imageAlt}
-             
-              className="transition-transform object-cover duration-500 hover:scale-105"
+              style={{
+                width: '100%',
+                height: 'auto',
+                display: 'block',
+              }}
             />
           </div>
         </section>
 
-        <section className="flex flex-wrap gap-4 mb-12">
+        <section style={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          gap: '1rem',
+          marginBottom: '3rem',
+        }}>
           <a
             href={project.liveLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-[#6366F1] to-[#EC4899] text-white font-semibold rounded-lg shadow-lg shadow-[#6366F1]/50 hover:shadow-[#EC4899]/50 transition-all transform hover:scale-[1.02]"
+            className="magnetic-btn"
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.5rem',
+              padding: '1rem 2rem',
+              background: 'linear-gradient(135deg, #6366f1, #ec4899)',
+              color: 'white',
+              fontWeight: 600,
+              borderRadius: '12px',
+              textDecoration: 'none',
+            }}
           >
             <FaExternalLinkAlt size={16} />
             Live Demo
@@ -65,93 +125,260 @@ export default async function ProjectDetailsPage({ params }) {
             href={project.githubLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 px-6 py-3 bg-[#0f172a] border border-gray-700 text-white font-semibold rounded-lg hover:border-[#6366F1] hover:shadow-lg hover:shadow-[#6366F1]/30 transition-all transform hover:scale-[1.02]"
+            className="magnetic-btn"
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.5rem',
+              padding: '1rem 2rem',
+              background: 'transparent',
+              border: '2px solid var(--accent-primary)',
+              color: 'var(--accent-primary)',
+              fontWeight: 600,
+              borderRadius: '12px',
+              textDecoration: 'none',
+            }}
           >
             <FaGithub size={18} />
             GitHub Repository
           </a>
         </section>
 
-        <section className="grid md:grid-cols-3 gap-12 mb-12">
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+          gap: '3rem',
+          marginBottom: '3rem',
+        }}>
           
-          <div className="md:col-span-2 space-y-6">
-            <h2 className="text-3xl font-bold text-white border-b border-gray-700 pb-2">Overview</h2>
-            <p className="text-lg leading-relaxed">{project.fullDescription}</p>
+          <div>
+            <h2 style={{
+              fontSize: '2rem',
+              fontWeight: 700,
+              color: 'var(--text-primary)',
+              marginBottom: '1.5rem',
+              borderBottom: '2px solid var(--border-color)',
+              paddingBottom: '0.5rem',
+            }}>
+              Overview
+            </h2>
+            <p style={{
+              fontSize: '1.0625rem',
+              lineHeight: 1.8,
+              color: 'var(--text-secondary)',
+            }}>
+              {project.fullDescription}
+            </p>
           </div>
 
-          <div className="md:col-span-1">
-            <h2 className="text-3xl font-bold text-white border-b border-gray-700 pb-2 mb-4"><FaTools className="inline-block mr-2 text-[#6366F1]" />Tech Stack</h2>
-            <div className="flex flex-wrap gap-2">
+          <div>
+            <h2 style={{
+              fontSize: '2rem',
+              fontWeight: 700,
+              color: 'var(--text-primary)',
+              marginBottom: '1.5rem',
+              borderBottom: '2px solid var(--border-color)',
+              paddingBottom: '0.5rem',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.5rem',
+            }}>
+              <FaTools style={{ color: 'var(--accent-primary)' }} />
+              Tech Stack
+            </h2>
+            <div style={{
+              display: 'flex',
+              flexWrap: 'wrap',
+              gap: '0.75rem',
+            }}>
               {project.techStack.map((tech, idx) => (
                 <span
                   key={idx}
-                  className="px-4 py-1 text-sm font-semibold bg-[#6366F1]/10 text-[#6366F1] border border-[#6366F1]/30 rounded-full hover:bg-[#6366F1]/20 transition"
+                  style={{
+                    padding: '0.5rem 1rem',
+                    fontSize: '0.875rem',
+                    fontWeight: 600,
+                    background: 'var(--bg-tertiary)',
+                    color: 'var(--accent-primary)',
+                    border: '1px solid var(--border-color)',
+                    borderRadius: '20px',
+                  }}
                 >
                   {tech}
                 </span>
               ))}
             </div>
           </div>
-        </section>
+        </div>
 
-        <hr className="border-gray-800 my-12" />
+        <hr style={{ border: 'none', borderTop: '1px solid var(--border-color)', margin: '3rem 0' }} />
 
-        <section className="grid lg:grid-cols-2 gap-12 mb-12">
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+          gap: '3rem',
+          marginBottom: '3rem',
+        }}>
           
           <div>
-            <h3 className="text-3xl font-bold text-white mb-4">Key Features</h3>
-            <ul className="list-disc list-inside space-y-3 pl-4 text-gray-400">
+            <h3 style={{
+              fontSize: '1.75rem',
+              fontWeight: 700,
+              color: 'var(--text-primary)',
+              marginBottom: '1.5rem',
+            }}>
+              Key Features
+            </h3>
+            <ul style={{
+              listStyle: 'none',
+              padding: 0,
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '1rem',
+            }}>
               {project.keyFeatures.map((feature, idx) => (
-                <li key={idx} className="leading-relaxed">
-                  <span className="font-medium text-white">{feature}</span>
+                <li key={idx} style={{
+                  display: 'flex',
+                  alignItems: 'start',
+                  gap: '0.75rem',
+                  lineHeight: 1.6,
+                }}>
+                  <span style={{ color: 'var(--accent-primary)', marginTop: '0.25rem' }}>▹</span>
+                  <span style={{ color: 'var(--text-secondary)' }}>{feature}</span>
                 </li>
               ))}
             </ul>
           </div>
 
           <div>
-            <h3 className="text-3xl font-bold text-white mb-4"><FaLightbulb className="inline-block mr-2 text-[#EC4899]" />Technical Learnings</h3>
-            <ul className="list-disc list-inside space-y-3 pl-4 text-gray-400">
+            <h3 style={{
+              fontSize: '1.75rem',
+              fontWeight: 700,
+              color: 'var(--text-primary)',
+              marginBottom: '1.5rem',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.5rem',
+            }}>
+              <FaLightbulb style={{ color: 'var(--accent-secondary)' }} />
+              Technical Learnings
+            </h3>
+            <ul style={{
+              listStyle: 'none',
+              padding: 0,
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '1rem',
+            }}>
               {project.technicalLearnings.map((learning, idx) => (
-                <li key={idx} className="leading-relaxed">
-                  <span className="font-medium text-white">{learning}</span>
+                <li key={idx} style={{
+                  display: 'flex',
+                  alignItems: 'start',
+                  gap: '0.75rem',
+                  lineHeight: 1.6,
+                }}>
+                  <span style={{ color: 'var(--accent-secondary)', marginTop: '0.25rem' }}>▹</span>
+                  <span style={{ color: 'var(--text-secondary)' }}>{learning}</span>
                 </li>
               ))}
             </ul>
           </div>
-        </section>
+        </div>
 
-        <hr className="border-gray-800 my-12" />
+        <hr style={{ border: 'none', borderTop: '1px solid var(--border-color)', margin: '3rem 0' }} />
 
-        <section className="grid lg:grid-cols-2 gap-12 mb-12">
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+          gap: '3rem',
+          marginBottom: '3rem',
+        }}>
           
           <div>
-            <h3 className="text-3xl font-bold text-white mb-4">Challenges Faced</h3>
-            <ul className="list-disc list-inside space-y-3 pl-4 text-gray-400">
+            <h3 style={{
+              fontSize: '1.75rem',
+              fontWeight: 700,
+              color: 'var(--text-primary)',
+              marginBottom: '1.5rem',
+            }}>
+              Challenges Faced
+            </h3>
+            <ul style={{
+              listStyle: 'none',
+              padding: 0,
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '1rem',
+            }}>
               {project.challenges.map((challenge, idx) => (
-                <li key={idx} className="leading-relaxed">
-                  <span className="font-medium text-white">{challenge}</span>
+                <li key={idx} style={{
+                  display: 'flex',
+                  alignItems: 'start',
+                  gap: '0.75rem',
+                  lineHeight: 1.6,
+                }}>
+                  <span style={{ color: 'var(--accent-primary)', marginTop: '0.25rem' }}>▹</span>
+                  <span style={{ color: 'var(--text-secondary)' }}>{challenge}</span>
                 </li>
               ))}
             </ul>
           </div>
 
           <div>
-            <h3 className="text-3xl font-bold text-white mb-4"><FaRocket className="inline-block mr-2 text-green-400" />Future Plans</h3>
-            <ul className="list-disc list-inside space-y-3 pl-4 text-gray-400">
+            <h3 style={{
+              fontSize: '1.75rem',
+              fontWeight: 700,
+              color: 'var(--text-primary)',
+              marginBottom: '1.5rem',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.5rem',
+            }}>
+              <FaRocket style={{ color: '#10b981' }} />
+              Future Plans
+            </h3>
+            <ul style={{
+              listStyle: 'none',
+              padding: 0,
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '1rem',
+            }}>
               {project.futurePlans.map((plan, idx) => (
-                <li key={idx} className="leading-relaxed">
-                  <span className="font-medium text-white">{plan}</span>
+                <li key={idx} style={{
+                  display: 'flex',
+                  alignItems: 'start',
+                  gap: '0.75rem',
+                  lineHeight: 1.6,
+                }}>
+                  <span style={{ color: '#10b981', marginTop: '0.25rem' }}>▹</span>
+                  <span style={{ color: 'var(--text-secondary)' }}>{plan}</span>
                 </li>
               ))}
             </ul>
           </div>
-        </section>
+        </div>
         
-        <section className="mt-12 p-6 bg-[#0f172a]/70 border border-gray-800 rounded-lg">
-            <h3 className="text-2xl font-bold text-white mb-3">Deployment Process</h3>
-            <p className="text-gray-400">{project.deploymentProcess}</p>
-        </section>
+        <div className="glass-card" style={{
+          padding: '2rem',
+          borderRadius: '20px',
+          marginTop: '3rem',
+        }}>
+          <h3 style={{
+            fontSize: '1.5rem',
+            fontWeight: 700,
+            color: 'var(--text-primary)',
+            marginBottom: '1rem',
+          }}>
+            Deployment Process
+          </h3>
+          <p style={{
+            color: 'var(--text-secondary)',
+            lineHeight: 1.8,
+          }}>
+            {project.deploymentProcess}
+          </p>
+        </div>
 
       </div>
     </main>

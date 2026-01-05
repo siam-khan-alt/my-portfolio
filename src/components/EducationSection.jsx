@@ -1,7 +1,7 @@
 'use client';
 
-import { FaGraduationCap, FaSchool, FaBook } from 'react-icons/fa';
 import { motion } from 'framer-motion';
+import { GraduationCap, School } from 'lucide-react';
 
 const educationData = [
   {
@@ -11,7 +11,7 @@ const educationData = [
     institution: "Kaliakair Govt. College",
     location: "Kaliakair, Gazipur",
     duration: "2023 – Present",
-    icon: FaGraduationCap,
+    icon: GraduationCap,
     priority: 'Current'
   },
   {
@@ -21,12 +21,10 @@ const educationData = [
     institution: "Abdur Rahman Degree College",
     location: "Gafargaon, Mymensingh",
     duration: "2022",
-    icon: FaSchool,
+    icon: School,
     priority: 'Major'
   }
-  
 ];
-
 
 function TimelineItem({ item, index }) {
   const Icon = item.icon;
@@ -36,27 +34,65 @@ function TimelineItem({ item, index }) {
     <motion.div
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
       transition={{ duration: 0.6, delay: index * 0.1 }}
-      viewport={{ once: true, amount: 0.3 }}
-      className="mb-8 w-full"
+      whileHover={{ y: -10, scale: 1.02 }}
+      className="glass-card"
+      style={{
+        padding: '2rem',
+        borderRadius: '20px',
+        cursor: 'pointer',
+      }}
     >
-      <div className="bg-[#0f172a]/70 border border-gray-800 p-6 rounded-xl shadow-xl hover:border-[#6366F1] transition-all">
-          
-        <p 
-          className={`text-sm font-semibold mb-3 ${isOngoing ? 'text-[#EC4899]' : 'text-[#6366F1]'}`}
-        >
-          {item.duration}
-        </p>
-        
-        <div className="flex items-center mb-2">
-          <Icon className={`text-2xl mr-3 ${isOngoing ? 'text-[#EC4899]' : 'text-[#6366F1]'}`} />
-          <h3 className="text-xl font-extrabold text-white">{item.degree}</h3>
-        </div>
-        
-        <p className="text-md font-bold text-gray-300 mb-1">{item.institution}</p>
-        <p className={`text-sm ${isOngoing ? 'text-[#EC4899]' : 'text-gray-400'}`}>{item.status}</p>
-        <p className="text-xs text-gray-500 mt-1">{item.location}</p>
+      <p style={{
+        fontSize: '0.9375rem',
+        fontWeight: 600,
+        marginBottom: '1rem',
+        color: isOngoing ? 'var(--accent-secondary)' : 'var(--accent-primary)',
+      }}>
+        {item.duration}
+      </p>
+      
+      <div style={{ display: 'flex', alignItems: 'center', marginBottom: '0.75rem' }}>
+        <Icon 
+          size={28} 
+          style={{ 
+            color: isOngoing ? 'var(--accent-secondary)' : 'var(--accent-primary)',
+            marginRight: '1rem',
+          }} 
+        />
+        <h3 style={{ 
+          fontSize: '1.5rem', 
+          fontWeight: 700,
+          color: 'var(--text-primary)',
+        }}>
+          {item.degree}
+        </h3>
       </div>
+      
+      <p style={{ 
+        fontSize: '1.0625rem', 
+        fontWeight: 600,
+        color: 'var(--text-primary)',
+        marginBottom: '0.5rem',
+      }}>
+        {item.institution}
+      </p>
+      
+      <p style={{
+        fontSize: '0.9375rem',
+        color: isOngoing ? 'var(--accent-secondary)' : 'var(--text-secondary)',
+        marginBottom: '0.25rem',
+      }}>
+        {item.status}
+      </p>
+      
+      <p style={{ 
+        fontSize: '0.875rem',
+        color: 'var(--text-tertiary)',
+      }}>
+        {item.location}
+      </p>
     </motion.div>
   );
 }
@@ -65,33 +101,50 @@ export default function EducationSection() {
   const filteredEducation = educationData.filter(item => item.priority !== 'Minor');
 
   return (
-    <section id="education" className="py-10 md:py-14 lg:py-20 bg-[#0f172a] text-gray-300 px-4 sm:px-8">
-      <div className="max-w-4xl mx-auto"> 
-
+    <section 
+      id="education" 
+      style={{ 
+        padding: '2rem',
+        background: 'var(--bg-primary)',
+      }}
+    >
+      <div className="max-w-7xl mx-auto">
         <motion.div
-          className="text-center mb-16"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          style={{ textAlign: 'center', marginBottom: '4rem' }}
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            <span className="text-white">My</span>{' '}
-            <span className="text-[#6366F1]">Education</span>
+          <h2 style={{ 
+            fontSize: 'clamp(2.5rem, 6vw, 4rem)',
+            fontWeight: 900,
+            marginBottom: '1rem',
+          }}>
+            <span style={{ color: 'var(--text-primary)' }}>My</span>{' '}
+            <span className="gradient-text">Education</span>
           </h2>
-          <div className="w-60 md:w-72 lg:w-80 h-1 bg-gradient-to-r from-[#6366F1] to-[#EC4899] mx-auto rounded-full"></div>
+      
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+          gap: '2rem',
+        }}>
           {filteredEducation.map((item, index) => (
             <TimelineItem key={item.id} item={item} index={index} />
           ))}
         </div>
         
-        <p className="text-center mt-10 text-gray-500">
-            *Only major academic achievements are displayed above.
+        <p style={{ 
+          textAlign: 'center',
+          marginTop: '3rem',
+          color: 'var(--text-tertiary)',
+          fontSize: '0.875rem',
+        }}>
+          *Only major academic achievements are displayed above.
         </p>
-
       </div>
     </section>
   );
