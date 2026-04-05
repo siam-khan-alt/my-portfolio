@@ -44,7 +44,7 @@ export default async function ProjectDetailsPage({ params }) {
       color: 'var(--text-secondary)',
       padding: '4rem 2rem 4rem',
     }}>
-      <div className="max-w-6xl mx-auto">
+      <div className="container mx-auto">
 
         <Link 
           href="/#projects" 
